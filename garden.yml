@@ -1,0 +1,23 @@
+# garden.yml
+kind: Project
+name: flask-app
+environments:
+- name: dev
+  providers:
+  - name: kubernetes
+    context: gke_fullstackgcp_us-central1-c_my-dev-cluster
+    buildMode: cluster-docker
+defaultEnvironment: dev
+
+---
+
+kind: Module
+name: backend
+description: My App Backend
+type: container
+services:
+  # Service provides a running instance of your module.
+  - name: backend
+    ports:
+      - name: http
+        containerPort: 8080
